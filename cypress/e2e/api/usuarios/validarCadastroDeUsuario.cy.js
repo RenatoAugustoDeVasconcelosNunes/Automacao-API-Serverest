@@ -11,7 +11,7 @@ describe('validarCadastroDeUsuarios', () => {
             nome: faker.name.firstName(),
             email: faker.internet.email(),
             password: faker.internet.password(),
-            administrador: 'true'
+            administrador: `${faker.datatype.boolean()}`
         }
 
         cy.api_cadastrarUsuario(dadosUsuario)
