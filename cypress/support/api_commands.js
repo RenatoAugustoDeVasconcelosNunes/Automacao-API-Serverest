@@ -119,3 +119,31 @@ Cypress.Commands.add('api_deletarUsuarios', (id) => {
     })
 
 })
+
+
+Cypress.Commands.add('api_buscarUsuarioPorId', (id) =>{
+
+    cy.api({
+
+        method: 'GET',
+        url: `/usuarios/${id}`,
+        failOnStatusCode: false
+
+        
+    })
+
+})
+
+
+Cypress.Commands.add('api_excluirUsuario', (id) =>{
+
+    cy.api({
+
+        method: 'DELETE',
+        url: `/usuarios/${id}`,
+        failOnStatusCode: false
+
+        
+    })
+
+})
