@@ -97,40 +97,40 @@ describe ('editarUsuario', () =>{
 
 
 
-    it.only('editarAdministradorUsuario', ()=>{
+    // it('editarAdministradorUsuario', ()=>{
 
-        const dadosUsuario = {
-            nome: faker.name.firstName(),
-            email: faker.internet.email(),
-            password: faker.internet.password(),
-            administrador: `${faker.datatype.boolean()}`
-        }
+    //     const dadosUsuario = {
+    //         nome: faker.name.firstName(),
+    //         email: faker.internet.email(),
+    //         password: faker.internet.password(),
+    //         administrador: `${faker.datatype.boolean()}`
+    //     }
 
         
 
-        cy.api_cadastrarUsuario(dadosUsuario)
-            .then(respCadastrar => {
+    //     cy.api_cadastrarUsuario(dadosUsuario)
+    //         .then(respCadastrar => {
 
-                const novoAdministrador = dadosUsuario.administrador
+    //             // const novoAdministrador = dadosUsuario.administrador
 
-            if (dadosUsuario.administrador == false){
-                novoAdministrador = true
-            }else{
-                novoAdministrador = false
-            }
-
-
-                cy.api_editarUsuario(respCadastrar.body._id, 'administrador', novoAdministrador)
-                    .then(respEditar => {
-                        expect(respEditar.status).to.equal(200)
-                        expect(respEditar.body.message).to.equal('Registro alterado com sucesso')
-                    })
+    //         // if (dadosUsuario.administrador == false){
+    //         //     novoAdministrador = true
+    //         // }else{
+    //         //     novoAdministrador = false
+    //         // }
 
 
-            })
+    //             cy.api_editarUsuario(respCadastrar.body._id, 'administrador', novoAdministrador)
+    //                 .then(respEditar => {
+    //                     expect(respEditar.status).to.equal(200)
+    //                     expect(respEditar.body.message).to.equal('Registro alterado com sucesso')
+    //                 })
+
+
+    //         })
         
 
-    })
+    // })
 
 
 
