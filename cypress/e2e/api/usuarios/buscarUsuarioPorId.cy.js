@@ -5,7 +5,7 @@ import { faker } from '@faker-js/faker'
 describe ('buscarUsuarioPorID', () =>{
 
 
-    it.only('buscarComSucesso', ()=>{
+    it('buscarComSucesso', ()=>{
 
         const dadosUsuario = {
             nome: faker.name.firstName(),
@@ -56,7 +56,11 @@ describe ('buscarUsuarioPorID', () =>{
 
 
     
+    it('realizarLimpezaDeUsuarios', () => {
 
+        cy.api_deletarTodosOsUsuarios()
+
+    })
 
 
 

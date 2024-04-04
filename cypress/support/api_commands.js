@@ -109,17 +109,6 @@ Cypress.Commands.add('api_listarUsuariosCadastrados', (variavelParaPesquisar, da
 })
 
 
-Cypress.Commands.add('api_deletarUsuarios', (id) => {
-
-    cy.api({
-
-        method: 'DELETE',
-        url: `/usuarios/${id}`
-
-    })
-
-})
-
 
 Cypress.Commands.add('api_buscarUsuarioPorId', (id) =>{
 
@@ -146,4 +135,107 @@ Cypress.Commands.add('api_excluirUsuario', (id) =>{
         
     })
 
+})
+
+
+Cypress.Commands.add('api_listarTodosOsUsuarios', () => {
+
+    cy.api({
+
+        method: 'GET',
+        url: `/usuarios`
+
+    })
+
+
+})
+
+
+Cypress.Commands.add('api_deletarTodosOsUsuarios', () => {
+
+    cy.api_listarTodosOsUsuarios()
+        .then(resp => resp.body.usuarios.forEach(respFor => 
+            
+            cy.api({
+                method:'DELETE', 
+                url: `/usuarios/${respFor._id}`,
+                failOnStatusCode: false
+        })))
+})
+
+
+Cypress.Commands.add('api_editarUsuario', (id, variavelParaAlterar, valorDaVariavel) => {
+
+
+    cy.api_buscarUsuarioPorId(id)
+        .then(respBusca => {
+
+            if (variavelParaAlterar == 'nome') {
+
+                cy.api({
+        
+                    method: 'PUT',
+                    url: `/usuarios/${id}`,
+                    body: {
+                        nome: valorDaVariavel.nome,
+                        email: respBusca.body.email,
+                        password: respBusca.body.password,
+                        administrador: respBusca.body.administrador
+                    }
+            
+                })
+                
+            } else if (variavelParaAlterar == 'email') {
+        
+                cy.api({
+        
+                    method: 'PUT',
+                    url: `/usuarios/${id}`,
+                    body: {
+                        nome: respBusca.body.nome,
+                        email: valorDaVariavel.email,
+                        password: respBusca.body.password,
+                        administrador: respBusca.body.administrador
+                    }
+            
+                })
+                
+            } else if (variavelParaAlterar == 'password') {
+        
+                cy.api({
+        
+                    method: 'PUT',
+                    url: `/usuarios/${id}`,
+                    body: {
+                        nome: respBusca.body.nome,
+                        email: respBusca.body.email,
+                        password: valorDaVariavel.password,
+                        administrador: respBusca.body.administrador
+                    }
+            
+                })
+                
+            } else if (variavelParaAlterar == 'administrador') {
+        
+                cy.api({
+        
+                    method: 'PUT',
+                    url: `/usuarios/${id}`,
+                    body: {
+                        nome: respBusca.body.nome,
+                        email: respBusca.body.email,
+                        password: respBusca.body.password,
+                        administrador: valorDaVariavel.administrador
+                    }
+            
+                })
+                
+            } 
+
+        })
+
+
+
+
+    
 })

@@ -1,9 +1,9 @@
 import { faker } from '@faker-js/faker'
 
 
-describe('validarCadastroDeUsuarios', () => {
+describe('cadastrarUsuario', () => {
 
-
+    
     it('cadastrarUsuarioComSucesso', () => {
 
 
@@ -164,6 +164,14 @@ describe('validarCadastroDeUsuarios', () => {
                 expect(responseCadastrar.body.password).to.equal('password é obrigatório')
                 expect(responseCadastrar.body.administrador).to.equal('administrador é obrigatório')
             })
+    })
+
+
+
+    it('realizarLimpezaDeUsuarios', () => {
+
+        cy.api_deletarTodosOsUsuarios()
+
     })
 
     

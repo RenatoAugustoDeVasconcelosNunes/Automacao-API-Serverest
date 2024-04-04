@@ -315,10 +315,11 @@ describe('listarUsuariosCadastrados', () => {
 
 
 
+    it('realizarLimpezaDeUsuarios', () => {
 
+        cy.api_deletarTodosOsUsuarios()
 
-
-
+    })
 
 
 
