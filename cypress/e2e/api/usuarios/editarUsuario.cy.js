@@ -114,9 +114,9 @@ describe ('editarUsuario', () =>{
                 const novoAdministrador = dadosUsuario.administrador
 
             if (dadosUsuario.administrador == false){
-                novoAdministrador = 'true'
+                novoAdministrador = true
             }else{
-                novoAdministrador = 'false'
+                novoAdministrador = false
             }
 
 
